@@ -39,9 +39,17 @@ Connect scans only (no SYN/stealth, UDP, OS detection or CIDR ranges).
 Connect scans are visible in target logs. Banner grabbing only works on
 services that speak first (SSH, FTP, SMTP); HTTP stays silent.
 
-## Timing (fill in from your own runs)
-| Threads | 1-1024 on localhost | 1-1024 on a remote host |
-|---|---|---|
-| 1 | | |
-| 10 | | |
-| 100 | | |
+## Timing
+
+Target: scanme.nmap.org, ports 1-100.
+
+| Threads | Timeout | Time | Open ports found |
+|---|---|---|---|
+| 1 | 2s | 32.70s | 3 (22, 53, 80) |
+| 10 | 2s | 2.99s | 3 |
+| 100 | 2s | 0.36s | 3 |
+
+Lesson: with a 0.5s timeout, the 10- and 100-thread runs missed open
+ports (found 1 and 0) because replies from a distant server arrived
+after the scanner gave up. A fast scan with too short a timeout can
+quietly give wrong answers.
