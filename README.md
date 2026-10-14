@@ -1,5 +1,7 @@
 # port-scanner
 
+Write-up: https://honore-nduwayo.github.io/port-scanner.html
+
 A small TCP connect port scanner in pure Python (standard library only).
 
 > **Legal / ethical notice:** only scan machines you own or have written
@@ -50,6 +52,6 @@ Target: scanme.nmap.org, ports 1-100.
 | 100 | 2s | 0.36s | 3 |
 
 Lesson: with a 0.5s timeout, the 10- and 100-thread runs missed open
-ports (found 1 and 0) because replies from a distant server arrived
+ports (found 1 and 0) most likely because replies from a distant server arrived
 after the scanner gave up. A fast scan with too short a timeout can
 quietly give wrong answers.
